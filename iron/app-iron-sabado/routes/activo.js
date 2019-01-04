@@ -15,7 +15,7 @@ router.get("/",  (req, res )=>{
     })
 })
 
-router.post("/new", auth.verifyToken, (req, res) =>{
+router.post("/new", /*auth.verifyToken,*/ (req, res) =>{
         const newActivo = new Activo({
             _negocio: req.body._negocio,
             //cuentas del activo

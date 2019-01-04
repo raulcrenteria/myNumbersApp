@@ -15,7 +15,7 @@ router.get("/",  (req, res )=>{
     })
 })
 
-router.post("/new", auth.verifyToken, (req, res) =>{
+router.post("/new", /*auth.verifyToken,*/ (req, res) =>{
         const newCapital = new Capital({
             _negocio: req.body._negocio,
             capital: req.body.capital,
