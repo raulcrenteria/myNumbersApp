@@ -15,10 +15,10 @@ const userSchema = new Schema({
         type: String,
         
     },
-    birthday:{
-        type: Date,
+    // birthday:{
+    //     type: Date,
         
-    },
+    // },
     rfc:{
         type: String,
         required: true,
