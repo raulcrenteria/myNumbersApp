@@ -12,12 +12,14 @@ class ProfileContainer extends Component {
         },
         editVisble:false,
         createVisible:false,
-        companys:[]
+        companys:[],
+        data:{}
     }
 
     readCompany=(user)=>{
         axios.get(`${base_url}api/negocio/`,user._id)
             .then(res => {
+                this.setState({companys:res.data.negocios})
                 console.log(res)
             })
             .catch(err => {
@@ -43,13 +45,20 @@ class ProfileContainer extends Component {
         this.setState({createVisible})
     }
 
+    handleText=(e)=>{
+        let data = this.state.data;
+        let field = e.target.name;
+        data[field] = e.target.value;
+        this.setState({data});
+
+   };
     render(){
-        let {user,editVisble,createVisible} = this.state
+        let {user,editVisble,createVisible,companys} = this.state
         return(
             <div >
                 
             <CardProfileData editVisble={editVisble} openCancel={this.editOpen} user={user}/>
-            <CardNegocio createVisible={createVisible} openCancel={this.openCreate}/>
+            <CardNegocio createVisible={createVisible} openCancel={this.openCreate} readCompany={this.readCompany} companys={companys}/>
 
             </div>
         )
