@@ -1,0 +1,15 @@
+
+.cardDataPrfile{
+    width: 100%;
+    margin-top:5px
+}
+.TitleCardProfile{
+    font-weight: bold
+}
+.Btn-Card-ProfileEdit{
+    color:black;
+    border-color: black;
+}
+.colum-btn-ProfileEdit{
+    text-align: right
+}
