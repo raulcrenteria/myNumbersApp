@@ -27,7 +27,8 @@ const userSchema = new Schema({
     },
     curp:{
         type: String,
-        unique: true,
+        maxlength: 18,
+        
 
     },
     phoneNumber:{
