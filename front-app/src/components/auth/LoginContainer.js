@@ -3,6 +3,7 @@ import LoginForm from './LoginForm';
 import SignupForm from './SignupForm'
 import {login,singup} from '../services/Auth'
 import './LogStyles.css';
+import {Card} from 'antd'
 
 import {Link} from 'react-router-dom'
 import {message} from 'antd';
@@ -42,6 +43,9 @@ class LoginContainer extends Component {
         let {data} = this.state;
         return (
             <div className="login">
+                <Card>
+
+                
                 <div className="header">
 
                     <span className="title">My Numbers</span>
@@ -49,18 +53,24 @@ class LoginContainer extends Component {
                 <div>
                 {
           pathname === '/login' ?
-          <LoginForm
-          data={data}
-          onLogin={this.onLogin}
-          handleText={this.handleText}/>
-        
+          
+            <LoginForm
+                    data={data}
+                    onLogin={this.onLogin}
+                    handleText={this.handleText}
+            />
+     
+          
             :
-            <SignupForm  handleText={this.handleText} data={data} onRegister={this.onRegister}  />
+
+           <SignupForm  handleText={this.handleText} data={data} onRegister={this.onRegister}  />
+
+           
         }
                     
                 </div>
                 
-                
+                </Card>
              
             </div>
         )

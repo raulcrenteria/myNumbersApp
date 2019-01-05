@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {
     Form, Row, Col, Input, Modal,Button,DatePicker
   } from 'antd';
+import axios from 'axios'
+import {base_url} from '../services/base_url'
 const FormItem = Form.Item;
 
 class ModalNuevoNegocio extends Component {
@@ -21,12 +23,30 @@ class ModalNuevoNegocio extends Component {
    };
 
     createNegocio = (e)=>{
+        const user = JSON.parse(localStorage.getItem('user'))
+        let {data} = this.state
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
-          console.log('Received values of form: ', values);
-          
+          if(err){
+            console.log('Received values of form: ', err);
+          }else{
+            data['_owner']=user._id
+            axios.post(`${base_url}api/negocio/new`, data)
+                .then(res => {
+                    console.log(res)
+                    this.props.cancel()
+                    this.props.readCompany(user._id,res.data.newNegocio)
+                    
+                })
+                .catch(err => {
+                    console.error(err);
+                })
+            console.log('Received values of form: ', values);
+            
+          }
+           
         });
-        console.log(this.state.data)
+        console.log("data",this.state.data)
         //this.props.cancel()
   
     }

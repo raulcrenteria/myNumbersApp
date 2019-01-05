@@ -33,7 +33,7 @@ app.use(cookieParser());
 
 // CORS
 app.use(cors({
-  origin: ["http://localhost:3001"]
+  origin: ["http://localhost:3001","https://mynumbersapp.herokuapp.com"]
 }));
 
 // Express View engine setup
@@ -48,7 +48,6 @@ app.use(require('node-sass-middleware')({
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 
 
@@ -65,13 +64,16 @@ const negocio = require('./routes/negocio');
 const pasivo = require('./routes/pasivo');
 const activo = require('./routes/activo');
 const estadoresultados = require('./routes/estadoresultados');
-app.use('/', index);
+
 app.use('/api/auth', auth);
 app.use('/api/activo', activo);
 app.use('/api/pasivo', pasivo);
 app.use('/api/capital', capital);
 app.use('/api/negocio', negocio);
 app.use('/api/estadoresultados', estadoresultados);
+app.all("*",(req,res)=>{
+  res.sendFile(`${__dirname}/public/index.html`)
+})
 
 
 module.exports = app;

@@ -8,14 +8,7 @@ const FormItem = Form.Item;
 class ModalProfile extends Component {
     state={
         user:{
-            firstName:"Dylna",
-            firstLastName:"Torres",
-            secondLastName:"Cruz",
-            birthday:"1992-10-22",
-            rfc:"",
-            curp:"",
-            phoneNumber:"0123456789",
-            email:"dyl@gmail.com",
+            
         },
         editVisble:false
     }
@@ -32,9 +25,15 @@ class ModalProfile extends Component {
 
     editPofile = (e)=>{
         e.preventDefault();
+        let {user} = this.state;
         this.props.form.validateFields((err, values) => {
-          console.log('Received values of form: ', values);
           
+          if(err){
+            console.log('Received values of form: ', err);
+          }else{
+              this.props.editUser(user)
+              this.props.cancel()
+          }
         });
         console.log(this.state.user)
         //this.props.cancel()
@@ -44,7 +43,7 @@ class ModalProfile extends Component {
     
     render(){
         const { getFieldDecorator } = this.props.form;
-        let {user}= this.state;
+        let {user}= this.props;
         const dateFormat = 'YYYY/MM/DD';
         return(
             <div>
@@ -69,7 +68,7 @@ class ModalProfile extends Component {
                                     required: true,
                                     message: 'Campo requerido!'
                                 }],
-                                
+                                initialValue:user.firstName
                                 })(
                                 <Input 
                                     name="firstName"
@@ -109,17 +108,6 @@ class ModalProfile extends Component {
                                     placeholder="Panchita" 
                                     onChange={this.handleText}    
                                 />
-                                )}
-                            </FormItem>
-                        </Col>
-                        <Col span={8} >
-                            <FormItem label={'Fecha de naciemiento'}>
-                                {getFieldDecorator(`birthday`, {
-                                rules: [{ type: 'object', required: true, message: 'Campo requerido!' }],
-                                })(
-                                    <DatePicker defaultValue={moment(user.birthday, dateFormat)} format={dateFormat}
-                                    
-                                    />
                                 )}
                             </FormItem>
                         </Col>

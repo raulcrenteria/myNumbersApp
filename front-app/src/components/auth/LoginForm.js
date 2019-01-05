@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './LogStyles.css';
-import { Form, Icon, Input, Button } from 'antd';
+import { Form, Icon, Input, Button,Card } from 'antd';
 import {Link} from 'react-router-dom'
 import {login} from '../services/Auth'
 const FormItem = Form.Item;
@@ -24,6 +24,7 @@ class LoginForm extends Component {
         const { getFieldDecorator } = this.props.form;
         const {handleText, data} = this.props;
         return (
+            
             <Form onSubmit={this.handleSubmit} className="login-form" >
                 <FormItem>
                     {getFieldDecorator('email', {

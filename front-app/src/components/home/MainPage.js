@@ -46,20 +46,16 @@ logOut = () => {
 };
 
 onOpenChange = (openKeys) => {
-    const latestOpenKey = openKeys.find(key => this.state.openKeys.indexOf(key) === -1);
-    if (this.rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
+    
         this.setState({ openKeys });
-    } else {
-        this.setState({
-            openKeys: latestOpenKey ? [latestOpenKey] : [],
-        });
-    }
+    
 }
 
 
 render() {
   
     return (
+    
         <Layout className={'leftside'}>
                 <Sider
                     trigger={null}

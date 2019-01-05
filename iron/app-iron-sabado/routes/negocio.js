@@ -31,7 +31,8 @@ router.post("/new", (req, res )=>{
 })
 
 router.get("/:id", (req, res)=>{
-    Negocio.findById(req.params.id)
+    console.log(req.params.id)
+    Negocio.find({_owner:req.params.id})
     .populate('_owner')
     .then(negocio =>{
         res.status(201).json({negocio})
