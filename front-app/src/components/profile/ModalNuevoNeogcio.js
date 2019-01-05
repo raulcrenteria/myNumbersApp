@@ -30,10 +30,11 @@ class ModalNuevoNegocio extends Component {
           if(err){
             console.log('Received values of form: ', err);
           }else{
+              console.log("reacara")
             data['_owner']=user._id
             axios.post(`${base_url}api/negocio/new`, data)
                 .then(res => {
-                    console.log(res)
+                    console.log("agregada",res)
                     this.props.cancel()
                     this.props.readCompany(user._id,res.data.newNegocio)
                     

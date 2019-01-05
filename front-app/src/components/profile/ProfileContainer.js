@@ -18,13 +18,16 @@ class ProfileContainer extends Component {
 
     readCompany=(user,negocio)=>{
         if(negocio){
+            console.log("si funciona",negocio)
             let {companys}=this.state
             companys.push(negocio)
             this.setState({negocio})
         }else{
+            console.log("recaarga")
             axios.get(`${base_url}api/negocio/${user._id}`)
             .then(res => {
-                this.setState({companys:res.data.negocios})
+                
+                this.setState({companys:res.data.negocio})
                 console.log(res)
             })
             .catch(err => {
@@ -80,6 +83,7 @@ class ProfileContainer extends Component {
    }
     render(){
         let {user,editVisble,createVisible,companys} = this.state
+        console.log("company",companys)
         return(
             <div >
                 
