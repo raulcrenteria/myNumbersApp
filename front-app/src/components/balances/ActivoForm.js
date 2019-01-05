@@ -10,7 +10,9 @@ class ActivoForm extends Component {
         }
         render(){
         return (
-           <div></div>
+           <div>
+               
+           </div>
         );
     }
 }
