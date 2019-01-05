@@ -54,6 +54,7 @@ newEstadoResultados.save()
     res.status(200).json({newEstadoResultados})
 })
 .catch(err =>{
+    console.log(err)
     res.status(404).json({err, msg:"No hay sesión de usuario iniciada"})
 })
 })

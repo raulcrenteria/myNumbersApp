@@ -44,12 +44,10 @@ sumaActivo
             activoFinNoCorr: req.body.activoFinNoCorr,
             inversiones: req.body.inversiones,
             propiedadesPlantasEquipo: req.body.propiedadesPlantasEquipo,
+            propiedadDeInversiones: req.body.propiedadDeInversiones,
+            impuestosDiferidos: req.body.impuestosDiferidos,
 
-
-
-
-
-            sumaActivo: req.body.efectivo + req.body.clientesdxcCP + req.body.activoNoFinCorr + req.body.inventariosCorrientes + req.body.clientesdxcLP + req.body.activoFinNoCorr + req.body.inversiones + req.body.propiedadesPlantasEquipo//SUMA FINAL, TODAS LAS CUENTAS          
+            sumaActivo: req.body.efectivo + req.body.clientesdxcCP + req.body.activoNoFinCorr + req.body.inventariosCorrientes + req.body.clientesdxcLP + req.body.activoFinNoCorr + req.body.inversiones + req.body.propiedadesPlantasEquipo + req.body.propiedadDeInversiones + req.body.impuestosDiferidos//SUMA FINAL, TODAS LAS CUENTAS          
         });
         newActivo.save()
         .then(newActivo => {
