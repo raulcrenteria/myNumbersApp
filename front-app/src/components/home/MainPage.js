@@ -5,6 +5,8 @@ import LeftSide from "./Drawer";
 //import Sections from "./Sections";
 import Navbar from "../navbar/Navbar";
 import Sections  from "./Sections" 
+import {readActivo} from "../services/Activo"
+import {readCompanys} from '../services/Company'
 //import MainLoader from "../common/Main Loader";
 
 const { Header, Sider, Content } = Layout;
@@ -21,7 +23,14 @@ class MainPage extends Component {
         collapsed: false,
         user:{},
         openKeys: [],
+        companys:[],
+        activos:[]
     };
+
+
+
+
+    //user Edit
 
     componentWillMount(){
         const userToken = (localStorage.getItem('token'));
@@ -30,6 +39,19 @@ class MainPage extends Component {
             this.props.history.push('/login');
         }else{
             this.setState({user:userData})
+            console.log(userData)
+            readCompanys(userData._id)
+            .then(res => {
+                
+                this.setState({companys:res.data.negocio})
+                console.log("respuesta",res)
+            })
+            .catch(err => {
+                console.error(err);
+            })
+            
+
+
         }
     }
 
@@ -51,9 +73,22 @@ onOpenChange = (openKeys) => {
     
 }
 
+getBalance=(data)=>{
+    console.log("getBalance",data)
+    readActivo(data._id)
+            .then(res => {
+                
+                this.setState({activos:res.data.activo})
+                console.log("respuesta",res)
+            })
+            .catch(err => {
+                console.error(err);
+            })
+}
+
 
 render() {
-  
+    let{companys,activos}=this.state
     return (
     
         <Layout className={'leftside'}>
@@ -63,7 +98,7 @@ render() {
                     collapsed={this.state.collapsed}
                 >
                 <div className="logo" >{!this.state.collapsed?'RANCHOADMIN':'ADMIN'}</div>
-            <LeftSide onOpenChange={this.onOpenChange}  openKeys={this.state.openKeys}/>
+            <LeftSide activos={activos}getBalance={this.getBalance} onOpenChange={this.onOpenChange}  openKeys={this.state.openKeys} companys={companys}/>
             </Sider>
             <Layout>
             <Header style={{ background: '#fff', padding: 0 }}>

@@ -3,7 +3,10 @@ import { Collapse } from 'antd';
 
 import axios from 'axios'
 import {base_url} from '../services/base_url'
+import {readCompanys} from '../services/Company'
 import Activo from './ActivoForm';
+import Pasivo from './PasivoForm';
+import Capital from './CapitalForm';
 const Panel = Collapse.Panel;
 class BalanceContainer extends Component {
     state={
@@ -22,7 +25,7 @@ class BalanceContainer extends Component {
             companys.push(negocio)
             this.setState({negocio})
         }else{
-            axios.get(`${base_url}api/negocio/${user._id}`)
+            readCompanys(user._id)
             .then(res => {
                 this.setState({companys:res.data.negocios})
                 console.log(res)
@@ -76,22 +79,19 @@ class BalanceContainer extends Component {
    };
     render(){
         let {user,editVisble,createVisible,companys} = this.state
-        const text = `
-  A dog is a type of domesticated animal.
-  Known for its loyalty and faithfulness,
-  it can be found as a welcome guest in many households across the world.
-`;
+        let _id = this.props.match.params;
+        console.log("que es", _id)
         return(
             <div >
                  <Collapse defaultActiveKey={['1']} >
                     <Panel header="Activo" key="1">
-                        <Activo/>
+                        <Activo id={_id}/>
                     </Panel>
                     <Panel header="Pasivo" key="2">
-                    <p>{text}</p>
+                        <Pasivo id={_id}/>
                     </Panel>
                     <Panel header="Capital" key="3" >
-                    <p>{text}</p>
+                        <Capital id={_id}/>
                     </Panel>
                 </Collapse>
             </div>

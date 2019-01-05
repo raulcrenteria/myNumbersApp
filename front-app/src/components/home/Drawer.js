@@ -1,11 +1,12 @@
 import React from 'react';
 import {Icon, Menu} from "antd";
-//import {Link} from 'react-router-dom';
+import moment from 'moment'
+import {Link} from 'react-router-dom';
 //import {paths} from './Sections';
 
 const SubMenu = Menu.SubMenu;
 
-const LeftSide = ({onOpenChange, user, openKeys}) => {
+const LeftSide = ({onOpenChange, user, openKeys,companys,getBalance,activos}) => {
 
     return (
 
@@ -17,11 +18,13 @@ const LeftSide = ({onOpenChange, user, openKeys}) => {
     onOpenChange={onOpenChange}
     >
         <SubMenu key="sub1" title={<span><Icon type="mail" /><span>Negocios</span></span>}>
-            <SubMenu key="sub2" title="La michoanca">
+            {companys.map((data,i)=>
+            <SubMenu key={i} title={data.nombre} onTitleClick={()=>getBalance(data)}>
               <SubMenu key="sub3" title="Balance Genera">
-              <SubMenu key="sub4" title="2001">
-                  <Menu.Item key="1">Enero</Menu.Item>
-                    <Menu.Item key="2">Febreo</Menu.Item>
+              <SubMenu key="sub4" title="Activo">
+              {activos.map((data,i)=>
+                  <Menu.Item key={i}><Link to={`/home/resumen/${data._negocio._id}`}>sub Activo</Link></Menu.Item>
+                )}
               </SubMenu>
               </SubMenu>
               <SubMenu key="sub5" title="Estado de Resultados">
@@ -29,7 +32,7 @@ const LeftSide = ({onOpenChange, user, openKeys}) => {
                     <Menu.Item key="2">Febreo</Menu.Item>
               </SubMenu>
               
-            </SubMenu>
+            </SubMenu>)}
         </SubMenu>
 
           

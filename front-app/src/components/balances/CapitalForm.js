@@ -1,84 +1,27 @@
 import React, {Component} from 'react';
-import {newActivo} from '../services/Activo'
+import {newCapital} from '../services/Activo'
 import { Form, Icon, Input, Button ,Checkbox,message} from 'antd';
 
 const FormItem = Form.Item;
 
-class ActivoForm extends Component {
+class CapitalForm extends Component {
         state={
            btnData:[
              {  
                 id:1,
-                name:'efectivo',
-                placeH:'Efectivo',
+                name:'capital',
+                placeH:'Capital',
                 activo:true,
                 checked:"checked"
             },
             {
                 id:2,
-                name:'clientesdxcCP',
+                name:'utEjAnterior',
                 activo:true,
-                placeH:'Clientes CP',
+                placeH:'Anterior',
                 checked:"checked"
                 
-            },
-            {
-                id:3,
-                name:'activoNoFinCorr',
-                activo:true,
-                placeH:'Activo',
-                checked:"checked"
-            },
-            {
-                id:4,
-                name:'inventariosCorrientes',
-                activo:true,
-                placeH:'Inventario Corritentes',
-                checked:"checked"
-            },
-            {
-                id:5,
-                name:'clientesdxcLP',
-                activo:true,
-                placeH:'Clientes LP',
-                checked:"checked"
-            },
-             {
-                id:6,
-                name:'activoFinNoCorr',
-                activo:true,
-                placeH:'Activo Fin',
-                checked:"checked"
-            },
-            {
-                id:7,
-                name:'inversiones',
-                activo:true,
-                placeH:'Inversiones',
-                checked:"checked"
-            },
-            {
-                id:8,
-                name:'propiedadesPlantasEquipo',
-                activo:true,
-                placeH:'Prioridades Plantas',
-                checked:"checked"
-                
-            },{
-                id:9,
-                name:'propiedadDeInversiones',
-                activo:true,
-                placeH:'Proiedad de Inversiones',
-                checked:"checked"
-                
-            },
-             {
-                id:10,
-                name: "impuestosDiferidos",
-                activo:true,
-                placeH:'Impuestos diferidos',
-                checked:"checked"
-            } 
+            }
            ],
            data:{},
            result:0
@@ -95,9 +38,9 @@ class ActivoForm extends Component {
                     this.sum()
                     this.props.form.resetFields()
                     this.setState({data:{}})
-                   newActivo(data).then(r=>{
+                   newCapital(data).then(r=>{
                     console.log("exito",r)
-                    message.info('Activo Guardado')}
+                    message.info('Capital Guardado')}
                     
                       
                 ).catch(err=>
@@ -171,6 +114,6 @@ class ActivoForm extends Component {
     }
 }
 
-const Activo = Form.create()(ActivoForm);
+const Capital = Form.create()(CapitalForm);
 
-export default Activo;
+export default Capital;

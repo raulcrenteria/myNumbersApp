@@ -9,41 +9,50 @@ const activoSchema = new Schema ({
         },
         efectivo: {
             type: Number, 
+            default:0
         },
         clientesdxcCP: {
             type: Number,
-            
+            default:0
         },
         activoNoFinCorr: {
             type: Number,
+            default:0
             
         },
         inventariosCorrientes:{
             type: Number,
+            default:0
             
         },
         clientesdxcLP: {
             type: Number,
+            default:0
             
         },
         activoFinNoCorr: {
             type: Number,
+            default:0
             
         },
         inversiones: {
             type: Number,
+            default:0
             
         },
         propiedadesPlantasEquipo: {
             type: Number,
+            default:0
             
         },
         propiedadDeInversiones: {
             type: Number,
+            default:0
             
         },
         impuestosDiferidos: {
             type: Number,
+            default:0
             
         },
 

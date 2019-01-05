@@ -11,6 +11,9 @@ export const createCompany = (data) =>{
     })
 }
 
+export const readCompanys = (data)=>{
+    return axios.get(`${base_url}api/negocio/${data}`)
+}
 
 export const updateCompany = ()=>{
 

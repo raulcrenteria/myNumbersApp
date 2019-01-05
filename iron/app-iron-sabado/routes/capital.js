@@ -33,7 +33,7 @@ router.post("/new", /*auth.verifyToken,*/ (req, res) =>{
 
 //READ
 router.get("/:id", (req, res)=>{
-    Capital.findById(req.params.id)
+    Capital.find({_negocio:req.params.id})
     .populate('_negocio')
     .then(capital =>{
         res.status(201).json({capital})

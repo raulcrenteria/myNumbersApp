@@ -1,84 +1,98 @@
 import React, {Component} from 'react';
-import {newActivo} from '../services/Activo'
+import {newPasivo} from '../services/Activo'
 import { Form, Icon, Input, Button ,Checkbox,message} from 'antd';
 
 const FormItem = Form.Item;
 
-class ActivoForm extends Component {
+class PasivoForm extends Component {
         state={
            btnData:[
              {  
                 id:1,
-                name:'efectivo',
-                placeH:'Efectivo',
+                name:'proveedoresCxpCP',
+                placeH:'Proveedores',
                 activo:true,
                 checked:"checked"
             },
             {
                 id:2,
-                name:'clientesdxcCP',
+                name:'deudasFinCP',
                 activo:true,
-                placeH:'Clientes CP',
+                placeH:'DeudasFin',
                 checked:"checked"
                 
             },
             {
                 id:3,
-                name:'activoNoFinCorr',
+                name:'bonosyPapelesCP',
                 activo:true,
-                placeH:'Activo',
+                placeH:'Bonos papeles',
                 checked:"checked"
             },
             {
                 id:4,
-                name:'inventariosCorrientes',
+                name:'otrosCredConCosto',
                 activo:true,
-                placeH:'Inventario Corritentes',
+                placeH:'Otros creditos',
                 checked:"checked"
             },
             {
                 id:5,
-                name:'clientesdxcLP',
+                name:'totalProvisionesCP',
                 activo:true,
-                placeH:'Clientes LP',
+                placeH:'Total provisiones',
                 checked:"checked"
             },
              {
                 id:6,
-                name:'activoFinNoCorr',
+                name:'pasivoPorImpuestosCorr',
                 activo:true,
-                placeH:'Activo Fin',
+                placeH:'Pasivo por Impuestos',
                 checked:"checked"
             },
             {
                 id:7,
-                name:'inversiones',
+                name:'proveedoresCxpLP',
                 activo:true,
-                placeH:'Inversiones',
+                placeH:'Proveedores Lp',
                 checked:"checked"
             },
             {
                 id:8,
-                name:'propiedadesPlantasEquipo',
+                name:'deudasFinLP',
                 activo:true,
-                placeH:'Prioridades Plantas',
+                placeH:'Deudas Fin',
                 checked:"checked"
                 
             },{
                 id:9,
-                name:'propiedadDeInversiones',
+                name:'bonosLP',
                 activo:true,
-                placeH:'Proiedad de Inversiones',
+                placeH:'Bonos Lp',
                 checked:"checked"
                 
             },
              {
                 id:10,
-                name: "impuestosDiferidos",
+                name: "acreedoresVariosLP",
                 activo:true,
-                placeH:'Impuestos diferidos',
+                placeH:'Acreedores',
                 checked:"checked"
-            } 
+            } ,
+            {
+               id:11,
+               name: "provisionesLP",
+               activo:true,
+               placeH:'Provisiones Lp',
+               checked:"checked"
+           } ,
+           {
+              id:12,
+              name: "impuestosDiferidos",
+              activo:true,
+              placeH:'Impuestos Diferidos',
+              checked:"checked"
+          } 
            ],
            data:{},
            result:0
@@ -95,9 +109,9 @@ class ActivoForm extends Component {
                     this.sum()
                     this.props.form.resetFields()
                     this.setState({data:{}})
-                   newActivo(data).then(r=>{
+                   newPasivo(data).then(r=>{
                     console.log("exito",r)
-                    message.info('Activo Guardado')}
+                    message.info('Pasivo Guardado')}
                     
                       
                 ).catch(err=>
@@ -171,6 +185,6 @@ class ActivoForm extends Component {
     }
 }
 
-const Activo = Form.create()(ActivoForm);
+const Pasivo = Form.create()(PasivoForm);
 
-export default Activo;
+export default Pasivo;

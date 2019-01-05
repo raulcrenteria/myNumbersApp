@@ -79,7 +79,7 @@ router.post("/new", (req, res) =>{
 
 //READ
 router.get("/:id", (req, res)=>{
-    Pasivo.findById(req.params.id)
+    Pasivo.find({_negocio:req.params.id})
     .populate('_negocio')
     .then(pasivo =>{
         res.status(201).json({pasivo})

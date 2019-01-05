@@ -54,13 +54,13 @@ sumaActivo
             res.status(200).json({newActivo})
         })
         .catch(err =>{
-            res.status(404).json({err, msg:"No hay sesión de usuario iniciada"})
+            res.status(404).json({err, msg:"Ocurrio un error"})
         })
 })
 
 //READ
 router.get("/:id", (req, res)=>{
-    Activo.findById(req.params.id)
+    Activo.find({_negocio:req.params.id})
     .populate('_negocio')
     .then(activo =>{
         res.status(201).json({activo})
