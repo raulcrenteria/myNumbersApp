@@ -71,6 +71,9 @@ app.use('/api/pasivo', pasivo);
 app.use('/api/capital', capital);
 app.use('/api/negocio', negocio);
 app.use('/api/estadoresultados', estadoresultados);
+app.all("*",(req,res)=>{
+  res.sendFile(`${__dirname}/public/index.html`)
+})
 
 
 module.exports = app;
