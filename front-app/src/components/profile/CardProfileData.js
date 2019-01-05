@@ -5,9 +5,9 @@ import {
 import "./profile.css"
 import ModalProfile from './ModalProfile';
 
-    export const CardProfileData = ({user,editVisble,openCancel}) =>(
+    export const CardProfileData = ({user,editVisble,openCancel,editUser}) =>(
         <div>
-        <ModalProfile open={editVisble} cancel={openCancel}/>
+        <ModalProfile open={editVisble} cancel={openCancel} user={user} editUser={editUser}/>
          <Card className="cardDataPrfile" title="Datos Personales" bordered={false} extra={<Button   className="Btn-Card-ProfileEdit" ghost onClick={openCancel}>Editar</Button>} >
     
          <Row gutter={24}>
@@ -25,12 +25,7 @@ import ModalProfile from './ModalProfile';
                 <span className="TitleCardProfile">Apellido Materno:</span>
                 <p>{user.secondLastName ? user.secondLastName:"-------"}</p>
                 </Col>
-  
-                <Col span={8} >
-                <span className="TitleCardProfile">Fecha de nacimiento:</span>
-                <p>{user.birthday ? user.birthday : "-------"}</p>
-                </Col>
-      
+                
                 <Col span={8} >
                 <span className="TitleCardProfile">RFC:</span>
                 <p>{user.rfc ? user.rfc : "-------"}</p>

@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import {
     Form, Row, Col, Input, Modal,Button,DatePicker
   } from 'antd';
-import {createCompany} from '../services/Company'
+import axios from 'axios'
+import {base_url} from '../services/base_url'
 const FormItem = Form.Item;
 
 class ModalNuevoNegocio extends Component {
@@ -30,10 +31,18 @@ class ModalNuevoNegocio extends Component {
             console.log('Received values of form: ', err);
           }else{
             data['_owner']=user._id
-            createCompany(data)
+            axios.post(`${base_url}api/negocio/new`, data)
+                .then(res => {
+                    console.log(res)
+                    this.props.cancel()
+                    this.props.readCompany(user._id,res.data.newNegocio)
+                    
+                })
+                .catch(err => {
+                    console.error(err);
+                })
             console.log('Received values of form: ', values);
-            this.props.cancel()
-            this.props.readCompany(user._id)
+            
           }
            
         });

@@ -1,5 +1,6 @@
 import React from 'react';
 import {Icon, Menu} from 'antd';
+import {Link} from 'react-router-dom'
 import './navbar.css'
 
 const SubMenu = Menu.SubMenu;
@@ -23,7 +24,7 @@ const Navbar=({logOut, user, collapsed, toggle, firstName})=> (
                         <Menu.Item>
                                <span>
                                     <Icon type="user" />
-                                <span>Perfil</span>
+                                <Link to="/home/profile"><span>Perfil</span></Link>
                                </span>
                             </Menu.Item>
                             <Menu.Item>

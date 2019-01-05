@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import {Avatar} from 'antd'
-import {CardProfileData} from './CardProfileData';
-import {CardNegocio} from './CardNegocio';
-import {} from '../services/Company'
+import { Collapse } from 'antd';
+
 import axios from 'axios'
 import {base_url} from '../services/base_url'
-class ProfileContainer extends Component {
+import Activo from './ActivoForm';
+const Panel = Collapse.Panel;
+class BalanceContainer extends Component {
     state={
         user:{
             
@@ -74,21 +74,29 @@ class ProfileContainer extends Component {
         this.setState({data});
 
    };
-   sendToNegocio=(data)=>{
-       console.log("que es: ",data)
-       this.props.history.push(`/home/balance/${data._id}`)
-   }
     render(){
         let {user,editVisble,createVisible,companys} = this.state
+        const text = `
+  A dog is a type of domesticated animal.
+  Known for its loyalty and faithfulness,
+  it can be found as a welcome guest in many households across the world.
+`;
         return(
             <div >
-                
-            <CardProfileData editVisble={editVisble} openCancel={this.editOpen} user={user} editUser={this.editUser}/>
-            <CardNegocio createVisible={createVisible} sendToNegocio={this.sendToNegocio}openCancel={this.openCreate} readCompany={this.readCompany} companys={companys}/>
-
+                 <Collapse defaultActiveKey={['1']} >
+                    <Panel header="Activo" key="1">
+                        <Activo/>
+                    </Panel>
+                    <Panel header="Pasivo" key="2">
+                    <p>{text}</p>
+                    </Panel>
+                    <Panel header="Capital" key="3" >
+                    <p>{text}</p>
+                    </Panel>
+                </Collapse>
             </div>
         )
     }
 }
 
-export default ProfileContainer;
+export default BalanceContainer;
