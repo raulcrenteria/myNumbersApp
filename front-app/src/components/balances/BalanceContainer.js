@@ -22,7 +22,7 @@ class BalanceContainer extends Component {
             companys.push(negocio)
             this.setState({negocio})
         }else{
-            axios.get(`${base_url}api/negocio/`,user._id)
+            axios.get(`${base_url}api/negocio/${user._id}`)
             .then(res => {
                 this.setState({companys:res.data.negocios})
                 console.log(res)

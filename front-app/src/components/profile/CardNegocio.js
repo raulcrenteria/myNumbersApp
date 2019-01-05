@@ -10,7 +10,7 @@ const { Meta } = Card;
                 <ModalNuevoNegocio open={createVisible} cancel={openCancel} readCompany={readCompany}/>
                 <Card className="cardDataPrfile" title="Negocios" extra={<Button   className="Btn-Card-ProfileEdit" ghost onClick={openCancel}>Nuevo</Button>}>
                 <Row gutter={16} style={{display:"flex",alignItems:"center",justifyContent:'center'}}>
-             {companys.length >= 1 ? companys.map((data,i)=>
+             {companys ? companys.map((data,i)=>
                     <Col span={8} key={i}>
                     <Card   
                             onClick={()=>sendToNegocio(data)}
