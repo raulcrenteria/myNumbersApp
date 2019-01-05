@@ -48,7 +48,6 @@ app.use(require('node-sass-middleware')({
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 
 
@@ -65,7 +64,7 @@ const negocio = require('./routes/negocio');
 const pasivo = require('./routes/pasivo');
 const activo = require('./routes/activo');
 const estadoresultados = require('./routes/estadoresultados');
-app.use('/', index);
+
 app.use('/api/auth', auth);
 app.use('/api/activo', activo);
 app.use('/api/pasivo', pasivo);
