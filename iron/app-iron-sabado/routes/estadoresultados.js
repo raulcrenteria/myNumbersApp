@@ -16,39 +16,25 @@ router.get("/",  (req, res )=>{
 })
 
 router.post("/new", /*auth.verifyToken,*/ (req, res) =>{
-        const newEstadoResultados = new EstadoResultados({
-            _negocio: req.body._negocio,
-            //cuentas del estado de resultados
-/* 
-
-ventas: req.body.ventas,
-  costoVentas: req.body.costoVentas,
-utilidadBruta: req.body.ventas - req.body.costoVentas,
-  gastosAdmn: req.body.gastosAdmn,
-  gastosOperativos: req.body.gastosOperativos,
-  gastosVentas: req.body.gastosVentas,
-utilidadOperativa: utilidadBruta - req.body.gastosAdmn - req.body.gastosOperativos - req.body.gastosVentas,
-  gastosFinancieros: req.body.gastosFinancieros,
-  ingresosFinancieros: req.body.ingresosFinancieros,
-utilidadAntesImpuestos: utilidadOperativa - req.body.gastosFinancieros + req.body.ingresosFinancieros,
-  impuestos: utilidadAntesImpuestos * .3,
-utilidadNeta:  utilidadAntesImpuestos - impuestos
-
-*/
-
-ventas: req.body.ventas,
-  costoVentas: req.body.costoVentas,
-utilidadBruta: req.body.ventas - req.body.costoVentas,
-  gastosAdmn: req.body.gastosAdmn,
-  gastosOperativos: req.body.gastosOperativos,
-  gastosVentas: req.body.gastosVentas,
-utilidadOperativa: utilidadBruta - req.body.gastosAdmn - req.body.gastosOperativos - req.body.gastosVentas,
-  gastosFinancieros: req.body.gastosFinancieros,
-  ingresosFinancieros: req.body.ingresosFinancieros,
-utilidadAntesImpuestos: utilidadOperativa - req.body.gastosFinancieros + req.body.ingresosFinancieros,
-  impuestos: utilidadAntesImpuestos * .3,
-utilidadNeta:  utilidadAntesImpuestos - impuestos
-});
+  const utilidadBruta = req.body.ventas - req.body.costoVentas;
+  const utilidadOperativa = utilidadBruta - req.body.gastosAdmn - req.body.gastosOperativos - req.body.gastosVentas;
+  const utilidadAntesImpuestos = utilidadOperativa - req.body.gastosFinancieros + req.body.ingresosFinancieros;
+  const impuestos = utilidadAntesImpuestos * .3;
+  const newEstadoResultados = new EstadoResultados({
+      _negocio: req.body._negocio,
+      ventas: req.body.ventas,
+      costoVentas: req.body.costoVentas,
+      utilidadBruta,
+      gastosAdmn: req.body.gastosAdmn,
+      gastosOperativos: req.body.gastosOperativos,
+      gastosVentas: req.body.gastosVentas,
+      utilidadOperativa,
+      gastosFinancieros: req.body.gastosFinancieros,
+      ingresosFinancieros: req.body.ingresosFinancieros,
+      utilidadAntesImpuestos,
+      impuestos,
+      utilidadNeta:  utilidadAntesImpuestos - impuestos
+  });
 newEstadoResultados.save()
 .then(newEstadoResultados => {
     res.status(200).json({newEstadoResultados})
